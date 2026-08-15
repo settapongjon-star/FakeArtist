@@ -1,0 +1,235 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Outfit:wght@400;700&display=swap');
+
+:root {
+  --primary: #ef4444; /* Red for the brand */
+  --primary-hover: #dc2626;
+  --bg-color: #0f172a; /* Dark slate */
+  --panel-bg: #1e293b;
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+  --accent: #3b82f6;
+  --border: #334155;
+  --canvas-bg: #ffffff;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.app-container {
+  width: 100%;
+  max-width: 900px;
+  background: var(--panel-bg);
+  border-radius: 20px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  padding: 30px;
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: fade-in 0.5s ease-out;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+h1, h2, h3 {
+  font-family: 'Outfit', sans-serif;
+  text-align: center;
+}
+
+.title {
+  font-size: 3rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #ef4444, #f97316);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 20px;
+}
+
+.subtitle {
+  font-size: 1.5rem;
+  color: var(--text-muted);
+  margin-bottom: 30px;
+}
+
+/* Inputs & Buttons */
+input {
+  width: 100%;
+  padding: 15px;
+  margin: 10px 0;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: #0f172a;
+  color: white;
+  font-size: 1rem;
+  transition: border-color 0.3s;
+}
+
+input:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+
+button {
+  background: var(--primary);
+  color: white;
+  border: none;
+  padding: 15px 30px;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  width: 100%;
+  margin: 10px 0;
+}
+
+button:hover {
+  background: var(--primary-hover);
+  transform: translateY(-2px);
+}
+
+button.secondary {
+  background: var(--accent);
+}
+
+button.secondary:hover {
+  background: #2563eb;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Layouts */
+.lobby-container, .role-container, .drawing-container, .voting-container, .result-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.player-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin: 20px 0;
+  width: 100%;
+}
+
+.player-badge {
+  background: #334155;
+  padding: 10px 20px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+}
+
+.color-dot {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+}
+
+.room-info {
+  background: #334155;
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+/* Drawing Canvas */
+.canvas-wrapper {
+  background: var(--canvas-bg);
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 0 0 5px var(--border);
+  margin: 20px 0;
+  touch-action: none; /* Prevent scrolling while drawing */
+}
+
+.turn-indicator {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+  padding: 10px 20px;
+  border-radius: 20px;
+}
+
+.my-turn {
+  background: #22c55e;
+  color: white;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7); }
+  70% { box-shadow: 0 0 0 10px rgba(34, 197, 94, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
+}
+
+.voting-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 15px;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.vote-card {
+  background: #334155;
+  padding: 20px;
+  border-radius: 15px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: 3px solid transparent;
+}
+
+.vote-card:hover {
+  transform: scale(1.05);
+}
+
+.vote-card.selected {
+  border-color: var(--primary);
+  background: #1e293b;
+}
+
+.role-card {
+  background: #334155;
+  padding: 30px;
+  border-radius: 20px;
+  text-align: center;
+  margin: 20px 0;
+  width: 100%;
+  max-width: 400px;
+}
+
+.role-title {
+  font-size: 2rem;
+  color: var(--primary);
+  margin-bottom: 15px;
+}
